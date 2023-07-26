@@ -1,13 +1,5 @@
 # Service Interconnect to enable workload migration
 
-[![main](https://github.com/skupperproject/skupper-example-gateway/actions/workflows/main.yaml/badge.svg)](https://github.com/skupperproject/skupper-example-gateway/actions/workflows/main.yaml)
-
-#### Connect services running as system processes
-
-This example is part of a [suite of examples][examples] showing the
-different ways you can use [Skupper][website] to connect services
-across cloud providers, data centers, and edge sites.
-
 [website]: https://skupper.io/
 
 #### Contents
