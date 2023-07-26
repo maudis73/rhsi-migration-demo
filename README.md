@@ -25,7 +25,7 @@ across a Kubernetes cluster and a bare-metal host or VM.
 
 It contains two services:
 
-* A backend service that exposes an `/api/hello` endpoint.  It
+* A backend service that exposes an `/api/greet` endpoint.  It
   returns greetings of the form `Hi, <your-name>.
 
 * A frontend service that sends greetings to the backend and
@@ -35,7 +35,7 @@ Both the frontend and the backend run initially on your local
 machine. 
 
 We are going to show how the backend can be moved to Openshift and use RHSI to enable the frontend to connect to the backend
-using a dedicated service network.
+using a dedicated service network, withoind need of reconfiguring the frontend.
 
 <!-- <img src="images/entities.svg" width="640"/> -->
 
@@ -130,12 +130,13 @@ $ oc config set-context --current --namespace rhsi-demo
 Context "rhsi-demo..." modified.
 ~~~
 
-## Step 4: Install Skupper in your Openshift namespace
+
+## Step @: Install RHSI in your Openshift namespace
 
 The `skupper init` command installs the Skupper router and service
 controller in the current namespace.
 
-_**Console for hello-world:**_
+_**Console for rhsi-demo:**_
 
 ~~~ shell
 skupper init
@@ -145,9 +146,9 @@ _Sample output:_
 
 ~~~ console
 $ skupper init
-Waiting for LoadBalancer IP or hostname...
-Skupper is now installed in namespace 'hello-world'.  Use 'skupper status' to get more information.
+Skupper is now installed in namespace 'rhsi-demo'.  Use 'skupper status' to get more information.
 ~~~
+
 
 ## Step 5: Install the Skupper gateway
 
@@ -155,7 +156,7 @@ The `skupper gateway init` command starts a Skupper router on
 your local system and links it to the Skupper router in the
 current Kubernetes namespace.
 
-_**Console for hello-world:**_
+_**Console for rhsi-demo:**_
 
 ~~~ shell
 skupper gateway init --type podman
@@ -165,7 +166,7 @@ _Sample output:_
 
 ~~~ console
 $ skupper gateway init --type podman
-Skupper gateway: 'fancypants-jross'. Use 'skupper gateway status' to get more information.
+Skupper gateway: ... Use 'skupper gateway status' to get more information.
 ~~~
 
 The `--type podman` option runs the router as a Podman
@@ -173,144 +174,3 @@ container.  You can also run it as a Docker container (`--type
 docker`) or as a systemd service (`--type service`).
 
 
-## Step 7: Expose the backend service
-
-Use `skupper service create` to define a Skupper service called
-`backend`.  Then use `skupper gateway bind` to attach your
-running backend process as a target for the service.
-
-_**Console for hello-world:**_
-
-~~~ shell
-skupper service create backend 8080
-skupper gateway bind backend localhost 8081
-~~~
-
-_Sample output:_
-
-~~~ console
-$ skupper service create backend 8080
-
-
-$ skupper gateway bind backend localhost 8081
-2022/09/08 07:07:00 CREATE io.skupper.router.tcpConnector fancypants-jross-egress-backend:8080 map[address:backend:8080 host:localhost name:fancypants-jross-egress-backend:8080 port:8081 siteId:d187db66-cbda-43fe-ac3b-4be22bbad1c9]
-~~~
-
-## Step 8: Expose the frontend service
-
-Our frontend is running on Kubernetes.  Use `skupper service
-create` and `skupper service bind` to define a Skupper service
-and attach the frontend deployment to it.
-
-We want to be able to connect locally as a client to the Skupper
-frontend service.  Use `skupper gateway forward` to map local
-port 8080 to the frontend service.
-
-_**Console for hello-world:**_
-
-~~~ shell
-skupper service create frontend 8080
-skupper service bind frontend deployment/frontend
-skupper gateway forward frontend 8080
-~~~
-
-_Sample output:_
-
-~~~ console
-$ skupper service create frontend 8080
-
-
-$ skupper service bind frontend deployment/frontend
-
-
-$ skupper gateway forward frontend 8080
-2022/09/08 07:07:07 CREATE io.skupper.router.tcpListener fancypants-jross-ingress-frontend:8080 map[address:frontend:8080 name:fancypants-jross-ingress-frontend:8080 port:8080 siteId:d187db66-cbda-43fe-ac3b-4be22bbad1c9]
-~~~
-
-## Step 9: Test the application
-
-Now we're ready to try it out.  Use `curl` or a similar tool to
-request the `http://localhost:8080/api/health` endpoint.
-
-_**Console for hello-world:**_
-
-~~~ shell
-curl http://localhost:8080/api/health
-~~~
-
-_Sample output:_
-
-~~~ console
-$ curl http://localhost:8080/api/health
-OK
-~~~
-
-If everything is in order, you can now access the web interface
-by navigating to `http://localhost:8080/` in your browser.
-
-## Accessing the web console
-
-Skupper includes a web console you can use to view the application
-network.  To access it, use `skupper status` to look up the URL of
-the web console.  Then use `kubectl get
-secret/skupper-console-users` to look up the console admin
-password.
-
-**Note:** The `<console-url>` and `<password>` fields in the
-following output are placeholders.  The actual values are specific
-to your environment.
-
-_**Console for hello-world:**_
-
-~~~ shell
-skupper status
-kubectl get secret/skupper-console-users -o jsonpath={.data.admin} | base64 -d
-~~~
-
-_Sample output:_
-
-~~~ console
-$ skupper status
-Skupper is enabled for namespace "hello-world" in interior mode. It is connected to 1 other site. It has 1 exposed service.
-The site console url is: <console-url>
-The credentials for internal console-auth mode are held in secret: 'skupper-console-users'
-
-$ kubectl get secret/skupper-console-users -o jsonpath={.data.admin} | base64 -d
-<password>
-~~~
-
-Navigate to `<console-url>` in your browser.  When prompted, log
-in as user `admin` and enter the password.
-
-## Cleaning up
-
-To remove Skupper and the other resources from this exercise, use
-the following commands.
-
-_**Console for hello-world:**_
-
-~~~ shell
-kill $(ps -ef | grep 'python python/main\.py' | awk '{print $2}') 2> /dev/null
-skupper gateway delete
-skupper delete
-kubectl delete service/frontend
-kubectl delete deployment/frontend
-~~~
-
-## Next steps
-
-Check out the other [examples][examples] on the Skupper website.
-
-## About this example
-
-This example was produced using [Skewer][skewer], a library for
-documenting and testing Skupper examples.
-
-[skewer]: https://github.com/skupperproject/skewer
-
-Skewer provides utility functions for generating the README and
-running the example steps.  Use the `./plano` command in the project
-root to see what is available.
-
-To quickly stand up the example using Minikube, try the `./plano demo`
-command.
