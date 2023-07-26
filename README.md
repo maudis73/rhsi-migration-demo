@@ -1,1 +1,1 @@
-# skupper-migration-demo
+# rhsi-migration-demo
