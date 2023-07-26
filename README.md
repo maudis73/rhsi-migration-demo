@@ -6,7 +6,6 @@
 
 * [Overview](#overview)
 * [Prerequisites](#prerequisites)
-* [Step 1: Install the Skupper command-line tool](#step-1-install-the-skupper-command-line-tool)
 * [Step 2: Access your Kubernetes cluster](#step-2-access-your-kubernetes-cluster)
 * [Step 3: Set up your Kubernetes namespace](#step-3-set-up-your-kubernetes-namespace)
 * [Step 4: Install Skupper in your Kubernetes namespace](#step-4-install-skupper-in-your-kubernetes-namespace)
@@ -47,6 +46,9 @@ using a dedicated service network.
 * The `oc` command-line tool, version 4.12 or later
   ([installation guide][install-oc-cli])
 
+* The `skupper` command-line tool, version 1.4 or later
+  ([installation guide][skupper-cli])
+
 * Access to an Openshift cluster, from [any provider you
   choose][ocp-providers]
 
@@ -56,29 +58,8 @@ using a dedicated service network.
 
 [install-podman]: https://podman.io/getting-started/installation
 [install-oc-cli]: https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#installing-openshift-cli
+[skupper-cli]: https://access.redhat.com/documentation/en-us/red_hat_service_interconnect/1.4/html-single/installation/index#installing-skupper-cli
 [ocp-providers]: https://skupper.io/start/openshift.html
-
-## Step 1: Install the Skupper command-line tool
-
-The `skupper` command-line tool is the entrypoint for installing
-and configuring Skupper.  You need to install the `skupper`
-command only once for each development environment.
-
-On Linux or Mac, you can use the install script (inspect it
-[here][install-script]) to download and extract the command:
-
-~~~ shell
-curl https://skupper.io/install.sh | sh
-~~~
-
-The script installs the command under your home directory.  It
-prompts you to add the command to your path if necessary.
-
-For Windows and other installation options, see [Installing
-Skupper][install-docs].
-
-[install-script]: https://github.com/skupperproject/skupper-website/blob/main/docs/install.sh
-[install-docs]: https://skupper.io/install/index.html
 
 ## Step 2: Access your Openshift cluster
 
