@@ -52,9 +52,9 @@ using a dedicated service network.
 * Access to an Openshift cluster, from [any provider you
   choose][ocp-providers]
 
-* The `starlette` and `uvicorn` Python modules.  This is required to
-  run the backend service locally.  To install the modules, run `pip
-  install starlette uvicorn`.
+* The `requests` and `Flask` Python modules.  This is required to
+  run the services locally.  To install the modules, run `pip
+  install requests Flask`.
 
 [install-podman]: https://podman.io/getting-started/installation
 [install-oc-cli]: https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#installing-openshift-cli
@@ -63,8 +63,7 @@ using a dedicated service network.
 
 ## Step 2: Access your Openshift cluster
 
-The procedure for accessing a Kubernetes cluster varies by
-provider. [Find the instructions for your chosen
+[Find the instructions for your chosen
 provider][ocp-providers] and use them to authenticate and
 configure access.
 
