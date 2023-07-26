@@ -42,11 +42,10 @@ using a dedicated service network.
 
 ## Prerequisites
 
-* A working installation of Podman ([installation
-  guide][install-podman])
+* A working installation of Podman ([installation guide][install-podman])
 
 * The `oc` command-line tool, version 4.12 or later
-  ([installation guide][install-kubectl])
+  ([installation guide][install-oc-cli])
 
 * Access to an Openshift cluster, from [any provider you
   choose][ocp-providers]
