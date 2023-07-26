@@ -98,6 +98,8 @@ Hello, 3!
 ...
 ~~~
 
+In the Tab1 you will be able to check the logs of the backen, and per each greeting sent by the frontend (running in Tab2) you will see a log in the backend.
+
 
 ## Step 2: Access your Openshift cluster
 
@@ -128,15 +130,10 @@ $ oc config set-context --current --namespace rhsi-demo
 Context "rhsi-demo..." modified.
 ~~~
 
-## Step 4: Install Skupper in your Kubernetes namespace
+## Step 4: Install Skupper in your Openshift namespace
 
 The `skupper init` command installs the Skupper router and service
 controller in the current namespace.
-
-**Note:** If you are using Minikube, [you need to start `minikube
-tunnel`][minikube-tunnel] before you install Skupper.
-
-[minikube-tunnel]: https://skupper.io/start/minikube.html#running-minikube-tunnel
 
 _**Console for hello-world:**_
 
@@ -161,51 +158,20 @@ current Kubernetes namespace.
 _**Console for hello-world:**_
 
 ~~~ shell
-skupper gateway init --type docker
+skupper gateway init --type podman
 ~~~
 
 _Sample output:_
 
 ~~~ console
-$ skupper gateway init --type docker
+$ skupper gateway init --type podman
 Skupper gateway: 'fancypants-jross'. Use 'skupper gateway status' to get more information.
 ~~~
 
-The `--type docker` option runs the router as a Docker
-container.  You can also run it as a Podman container (`--type
-podman`) or as a systemd service (`--type service`).
+The `--type podman` option runs the router as a Podman
+container.  You can also run it as a Docker container (`--type
+docker`) or as a systemd service (`--type service`).
 
-## Step 6: Deploy the frontend and backend services
-
-For this example, we are running the frontend on Kubernetes and
-the backend as a local system process.
-
-Use `kubectl create deployment` to deploy the frontend service
-in `hello-world`.
-
-Change to the `backend` directory and use `python
-python/main.py` to start the backend process.  You can run this in a
-different terminal if you prefer.
-
-_**Console for hello-world:**_
-
-~~~ shell
-kubectl create deployment frontend --image quay.io/skupper/hello-world-frontend
-(cd backend && python python/main.py --host localhost --port 8081) &
-~~~
-
-_Sample output:_
-
-~~~ console
-$ kubectl create deployment frontend --image quay.io/skupper/hello-world-frontend
-deployment.apps/frontend created
-
-$ (cd backend && python python/main.py --host localhost --port 8081) &
-INFO:     Started server process [208334]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-INFO:     Uvicorn running on http://localhost:8081 (Press CTRL+C to quit)
-~~~
 
 ## Step 7: Expose the backend service
 
