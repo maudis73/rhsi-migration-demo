@@ -60,10 +60,50 @@ using a dedicated service network.
 [skupper-cli]: https://access.redhat.com/documentation/en-us/red_hat_service_interconnect/1.4/html-single/installation/index#installing-skupper-cli
 [ocp-providers]: https://skupper.io/start/openshift.html
 
+
+## Step 1: Start backend and frontend on the VM
+
+For this example, we are initially running both the backend and the frontend as a local system process.
+Run the following command in sepatate tabb.
+
+_**Console for rhsi-demo:**_
+
+~~~ shell
+# in Tab1
+(cd backend && python main.py)
+# in Tab2
+(cd frontend && python main.py)
+~~~
+
+_Sample output:_
+
+~~~ console
+# in Tab1
+$ (cd backend && python main.py)
+ * Serving Flask app 'api'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6000
+ * Running on http://10.128.0.90:6000
+Press CTRL+C to quit
+10.128.0.85 - - [26/Jul/2023 13:58:48] "GET /api/greet?name=name1 HTTP/1.1" 200 -
+...
+
+# in Tab2
+$ (cd frontend && python main.py)
+Hello, 1!
+Hello, 2!
+Hello, 3!
+...
+~~~
+
+
 ## Step 2: Access your Openshift cluster
 
 [Find the instructions][ocp-providers] and use them to authenticate and
 configure access.
+
 
 ## Step 3: Set up your Openshift namespace
 
