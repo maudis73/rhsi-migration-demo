@@ -49,8 +49,7 @@ using a dedicated service network.
 * The `skupper` command-line tool, version 1.4 or later
   ([installation guide][skupper-cli])
 
-* Access to an Openshift cluster, from [any provider you
-  choose][ocp-providers]
+* Access to an Openshift cluster, from [Using Skupper with OpenShift][ocp-providers]
 
 * The `requests` and `Flask` Python modules.  This is required to
   run the services locally.  To install the modules, run `pip
