@@ -49,11 +49,11 @@ using a dedicated service network.
 * The `skupper` command-line tool, version 1.4 or later
   ([installation guide][skupper-cli])
 
-* Access to an Openshift cluster, from [Using Skupper with OpenShift][ocp-providers]
+* Access to an Openshift cluster
 
 * The `requests` and `Flask` Python modules.  This is required to
   run the services locally.  To install the modules, run `pip
-  install requests Flask`.
+  install requests Flask`
 
 [install-podman]: https://podman.io/getting-started/installation
 [install-oc-cli]: https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#installing-openshift-cli
@@ -62,31 +62,30 @@ using a dedicated service network.
 
 ## Step 2: Access your Openshift cluster
 
-[Find the instructions for your chosen
-provider][ocp-providers] and use them to authenticate and
+[Find the instructions][ocp-providers] and use them to authenticate and
 configure access.
 
-## Step 3: Set up your Kubernetes namespace
+## Step 3: Set up your Openshift namespace
 
-Use `kubectl create namespace` to create the namespace you wish
-to use (or use an existing namespace).  Use `kubectl config
+Use `oc create namespace` to create the namespace you wish
+to use (or use an existing namespace).  Use `oc config
 set-context` to set the current namespace for your session.
 
-_**Console for hello-world:**_
+_**Console for rhsi-demo:**_
 
 ~~~ shell
-kubectl create namespace hello-world
-kubectl config set-context --current --namespace hello-world
+oc create namespace rhsi-demo
+oc config set-context --current --namespace rhsi-demo
 ~~~
 
 _Sample output:_
 
 ~~~ console
-$ kubectl create namespace hello-world
-namespace/hello-world created
+$ oc create namespace rhsi-demo
+namespace/rhsi-demo created
 
-$ kubectl config set-context --current --namespace hello-world
-Context "minikube" modified.
+$ oc config set-context --current --namespace rhsi-demo
+Context "rhsi-demo..." modified.
 ~~~
 
 ## Step 4: Install Skupper in your Kubernetes namespace
