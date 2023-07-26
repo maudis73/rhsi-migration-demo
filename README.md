@@ -9,7 +9,6 @@ different ways you can use [Skupper][website] to connect services
 across cloud providers, data centers, and edge sites.
 
 [website]: https://skupper.io/
-[examples]: https://skupper.io/examples/index.html
 
 #### Contents
 
@@ -36,14 +35,15 @@ across a Kubernetes cluster and a bare-metal host or VM.
 It contains two services:
 
 * A backend service that exposes an `/api/hello` endpoint.  It
-  returns greetings of the form `Hi, <your-name>.  I am <my-name>
-  (<hostname>)`.
+  returns greetings of the form `Hi, <your-name>.
 
 * A frontend service that sends greetings to the backend and
   fetches new greetings in response.
 
-The frontend runs on Kubernetes and the backend runs on your local
-machine.  Skupper enables the frontend to connect to the backend
+Both the frontend and the backend run initially on your local
+machine. 
+
+We are going to show how the backend can be movedo to Openshift and use RHSI to enable the frontend to connect to the backend
 using a dedicated service network.
 
 <!-- <img src="images/entities.svg" width="640"/> -->
