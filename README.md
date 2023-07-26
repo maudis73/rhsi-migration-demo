@@ -1,4 +1,4 @@
-# Skupper Hello World using the gateway
+# Service Interconnect to enable workload migration
 
 [![main](https://github.com/skupperproject/skupper-example-gateway/actions/workflows/main.yaml/badge.svg)](https://github.com/skupperproject/skupper-example-gateway/actions/workflows/main.yaml)
 
@@ -43,7 +43,7 @@ It contains two services:
 Both the frontend and the backend run initially on your local
 machine. 
 
-We are going to show how the backend can be movedo to Openshift and use RHSI to enable the frontend to connect to the backend
+We are going to show how the backend can be moved to Openshift and use RHSI to enable the frontend to connect to the backend
 using a dedicated service network.
 
 <!-- <img src="images/entities.svg" width="640"/> -->
