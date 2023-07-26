@@ -42,24 +42,22 @@ using a dedicated service network.
 
 ## Prerequisites
 
-* A working installation of Docker ([installation
-  guide][install-docker]) or Podman ([installation
+* A working installation of Podman ([installation
   guide][install-podman])
 
-* The `kubectl` command-line tool, version 1.15 or later
+* The `oc` command-line tool, version 4.12 or later
   ([installation guide][install-kubectl])
 
-* Access to a Kubernetes cluster, from [any provider you
-  choose][kube-providers]
+* Access to an Openshift cluster, from [any provider you
+  choose][ocp-providers]
 
 * The `starlette` and `uvicorn` Python modules.  This is required to
   run the backend service locally.  To install the modules, run `pip
   install starlette uvicorn`.
 
-[install-docker]: https://docs.docker.com/engine/install/
 [install-podman]: https://podman.io/getting-started/installation
-[install-kubectl]: https://kubernetes.io/docs/tasks/tools/install-kubectl/
-[kube-providers]: https://skupper.io/start/kubernetes.html
+[install-oc-cli]: https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#installing-openshift-cli
+[ocp-providers]: https://skupper.io/start/openshift.html
 
 ## Step 1: Install the Skupper command-line tool
 
@@ -83,11 +81,11 @@ Skupper][install-docs].
 [install-script]: https://github.com/skupperproject/skupper-website/blob/main/docs/install.sh
 [install-docs]: https://skupper.io/install/index.html
 
-## Step 2: Access your Kubernetes cluster
+## Step 2: Access your Openshift cluster
 
 The procedure for accessing a Kubernetes cluster varies by
 provider. [Find the instructions for your chosen
-provider][kube-providers] and use them to authenticate and
+provider][ocp-providers] and use them to authenticate and
 configure access.
 
 ## Step 3: Set up your Kubernetes namespace
