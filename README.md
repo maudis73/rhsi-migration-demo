@@ -6,6 +6,7 @@
 
 * [Overview](#overview)
 * [Prerequisites](#prerequisites)
+* [Step 1: Start the backend and the frontend on the local system|#Start the backend and the frontend on the local system]
 * [Step 2: Access your Kubernetes cluster](#step-2-access-your-kubernetes-cluster)
 * [Step 3: Set up your Kubernetes namespace](#step-3-set-up-your-kubernetes-namespace)
 * [Step 4: Install Skupper in your Kubernetes namespace](#step-4-install-skupper-in-your-kubernetes-namespace)
@@ -61,10 +62,10 @@ using a dedicated service network, withoind need of reconfiguring the frontend.
 [ocp-providers]: https://skupper.io/start/openshift.html
 
 
-## Step 1: Start backend and frontend on the VM
+## Step 1: Start the backend and the frontend on the local system
 
 For this example, we are initially running both the backend and the frontend as a local system process.
-Run the following command in sepatate tabb.
+Run the following commands in sepatate tabs.
 
 _**Console for rhsi-demo:**_
 
@@ -98,7 +99,7 @@ Hello, 3!
 ...
 ~~~
 
-In the Tab1 you will be able to check the logs of the backen, and per each greeting sent by the frontend (running in Tab2) you will see a log in the backend.
+In the Tab1 you will be able to check the logs of the backend, and per each greeting sent by the frontend (running in Tab2) you will see a log in the backend.
 
 
 ## Step 2: Access your Openshift cluster
@@ -174,3 +175,67 @@ container.  You can also run it as a Docker container (`--type
 docker`) or as a systemd service (`--type service`).
 
 
+## Step @: Build the backend image
+
+Replace the <backend_image_url> with the url of the your image in your image regitry
+
+_**Console for rhsi-demo:**_
+
+~~~ shell
+podman build backend/ -t <backend_image_url>
+~~~
+
+_Sample output:_
+
+~~~ console
+$ podman build backend/ -t <backend_image_url>
+Successfully tagged <backend_image_url>:latest
+~~~
+
+
+## Step @: Deploy the backend on Openshift
+
+_**Console for rhsi-demo:**_
+
+~~~ shell
+oc new-app <backend_image_url>
+~~~
+
+_Sample output:_
+
+~~~ console
+$ oc new-app <backend_image_url> --name backend
+--> ...Success...
+    Run 'oc status' to view your app.
+~~~
+
+## Step @: Switch the backend running locally with the one running on Openshift
+
+_**Console for rhsi-demo:**_
+
+We are now going to switch the two backends, so that we can decommission the one running on the local system.
+To do that, we are first going to expose the backend on the VAN, and then create a forward rule on port 6000 on the local system (through the skupper
+gateway) to forwart all incomong requests to the backend VAN service.
+
+Before running the following commands, stop the backend, by pressing CTRL+C on the Tab1.
+The frontend has been developed sa that it will try to reconnect if the backend goes down, so when you stop the backend on the local system,
+you will see some error messages in the Tab2. Once we will perform the switch to the backend on Openshift, the client will automatically reconnect,
+but this time it will connect to the backend running on Openshift.
+
+~~~ shell
+skupper service create backend 6000
+skupper service bind backend deployment/backend
+skupper gateway forward backend 6000
+~~~
+
+_Sample output:_
+
+~~~ console
+$ skupper service create backend 6000
+$ skupper service bind backend deployment/backend
+$ skupper gateway forward backend 6000
+2023/07/27 12:32:22 CREATE io.skupper.router.tcpListener backend:6000 map[address:backend:6000 name:backend:6000 port:6000 siteId:e06dd6a1-7d36-44bf-88bf-8c50fcdfbcd1]
+~~~
+
+Observe the logs in Tab2, you should see that the client has managed to reconnec and continue from ther it stopped.
+On Openshift, you can see the logs from the backend pod logs.
