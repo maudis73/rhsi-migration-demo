@@ -175,6 +175,7 @@ _**Console for rhsi-demo:**_
 
 ~~~ shell
 podman build backend/ -t <backend_image_url>
+podman push <backend_image_url>
 ~~~
 
 _Sample output:_
@@ -182,6 +183,10 @@ _Sample output:_
 ~~~ console
 $ podman build backend/ -t <backend_image_url>
 Successfully tagged <backend_image_url>:latest
+
+$ podman push <backend_image_url>
+...Writing manifest to image destination
+Storing signatures
 ~~~
 
 ## Step 7: Deploy the backend on Openshift
@@ -189,7 +194,7 @@ Successfully tagged <backend_image_url>:latest
 _**Console for rhsi-demo:**_
 
 ~~~ shell
-oc new-app <backend_image_url>
+oc new-app <backend_image_url> --name backend
 ~~~
 
 _Sample output:_
