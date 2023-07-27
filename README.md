@@ -61,7 +61,6 @@ using a dedicated service network, withoind need of reconfiguring the frontend.
 [skupper-cli]: https://access.redhat.com/documentation/en-us/red_hat_service_interconnect/1.4/html-single/installation/index#installing-skupper-cli
 [ocp-providers]: https://skupper.io/start/openshift.html
 
-
 ## Step 1: Start the backend and the frontend on the local system
 
 For this example, we are initially running both the backend and the frontend as a local system process.
@@ -101,7 +100,6 @@ Hello, 3!
 
 In the Tab1 you will be able to check the logs of the backend, and per each greeting sent by the frontend (running in Tab2) you will see a log in the backend.
 
-
 ## Step 2: Access your Openshift cluster
 
 [Find the instructions][ocp-providers] and use them to authenticate and
@@ -130,7 +128,6 @@ namespace/rhsi-demo created
 $ oc config set-context --current --namespace rhsi-demo
 Context "rhsi-demo..." modified.
 ~~~
-
 
 ## Step @: Install RHSI in your Openshift namespace
 
