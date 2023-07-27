@@ -6,7 +6,7 @@
 
 * [Overview](#overview)
 * [Prerequisites](#prerequisites)
-* [Step 1: Start the backend and the frontend on the local system](#Start-the-backend-and-the-frontend-on-the-local-system])
+* [Step 1: Start the backend and the frontend on the local system](#step-1-Start-the-backend-and-the-frontend-on-the-local-system])
 * [Step 2: Access your Kubernetes cluster](#step-2-access-your-kubernetes-cluster)
 * [Step 3: Set up your Kubernetes namespace](#step-3-set-up-your-kubernetes-namespace)
 * [Step 4: Install Skupper in your Kubernetes namespace](#step-4-install-skupper-in-your-kubernetes-namespace)
