@@ -15,9 +15,7 @@
 * [Step 7: Expose the backend service](#step-7-expose-the-backend-service)
 * [Step 8: Expose the frontend service](#step-8-expose-the-frontend-service)
 * [Step 9: Test the application](#step-9-test-the-application)
-* [Accessing the web console](#accessing-the-web-console)
 * [Cleaning up](#cleaning-up)
-* [About this example](#about-this-example)
 
 ## Overview
 
@@ -105,7 +103,6 @@ In the Tab1 you will be able to check the logs of the backend, and per each gree
 [Find the instructions][ocp-providers] and use them to authenticate and
 configure access.
 
-
 ## Step 3: Set up your Openshift namespace
 
 Use `oc create namespace` to create the namespace you wish
@@ -129,7 +126,7 @@ $ oc config set-context --current --namespace rhsi-demo
 Context "rhsi-demo..." modified.
 ~~~
 
-## Step @: Install RHSI in your Openshift namespace
+## Step 4: Install RHSI in your Openshift namespace
 
 The `skupper init` command installs the Skupper router and service
 controller in the current namespace.
@@ -146,7 +143,6 @@ _Sample output:_
 $ skupper init
 Skupper is now installed in namespace 'rhsi-demo'.  Use 'skupper status' to get more information.
 ~~~
-
 
 ## Step 5: Install the Skupper gateway
 
@@ -172,7 +168,7 @@ container.  You can also run it as a Docker container (`--type
 docker`) or as a systemd service (`--type service`).
 
 
-## Step @: Build the backend image
+## Step 6: Build the backend image
 
 Replace the <backend_image_url> with the url of the your image in your image regitry
 
@@ -189,8 +185,7 @@ $ podman build backend/ -t <backend_image_url>
 Successfully tagged <backend_image_url>:latest
 ~~~
 
-
-## Step @: Deploy the backend on Openshift
+## Step 7: Deploy the backend on Openshift
 
 _**Console for rhsi-demo:**_
 
@@ -206,7 +201,7 @@ $ oc new-app <backend_image_url> --name backend
     Run 'oc status' to view your app.
 ~~~
 
-## Step @: Switch the backend running locally with the one running on Openshift
+## Step 8: Switch the backend running locally with the one running on Openshift
 
 _**Console for rhsi-demo:**_
 
@@ -236,3 +231,18 @@ $ skupper gateway forward backend 6000
 
 Observe the logs in Tab2, you should see that the client has managed to reconnec and continue from ther it stopped.
 On Openshift, you can see the logs from the backend pod logs.
+
+## Cleaning up
+
+To remove Skupper and the other resources from this exercise, use
+the following commands.
+
+_**Console for hello-world:**_
+
+~~~ shell
+kill $(ps -ef | grep 'python main\.py' | awk '{print $2}') 2> /dev/null
+skupper gateway delete
+skupper delete
+oc delete service/backend
+oc delete deployment/backend
+~~~
