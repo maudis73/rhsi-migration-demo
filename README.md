@@ -11,7 +11,7 @@
 * [Step 3: Set up your Openshift namespace](#step-3-set-up-your-openshift-namespace)
 * [Step 4: Install RHSI in your Openshift namespace](#step-4-install-rhsi-in-your-openshift-namespace)
 * [Step 5: Install the Skupper gateway](#Step-5-Install-the-Skupper-gateway)
-* [Step 6: Build the backend image](#Step-6-uild-the-backend-image)
+* [Step 6: Build the backend image](#Step-6-build-the-backend-image)
 * [Step 7: Deploy the backend on Openshift](#Step-7-Deploy-the-backend-on-Openshift)
 * [Step 8: Switch the backend running locally with the one running on Openshift](#Step-8-Switch-the-backend-running-locally-with-the-one-running-on-Openshift)
 * [Cleaning up](#cleaning-up)
