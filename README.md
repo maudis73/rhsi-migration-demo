@@ -33,7 +33,7 @@ Both the frontend and the backend run initially on your local
 machine. 
 
 We are going to show how the backend can be moved to Openshift and use RHSI to enable the frontend to connect to the backend
-using a dedicated service network, withoind need of reconfiguring the frontend.
+using a dedicated service network, without any frontend reconfiguration.
 
 <!-- <img src="images/entities.svg" width="640"/> -->
 
