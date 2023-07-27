@@ -9,12 +9,19 @@
 * [Step 1: Start the backend and the frontend on the local system](#step-1-start-the-backend-and-the-frontend-on-the-local-system)
 * [Step 2: Access your Openshift cluster](#step-2-access-your-openshift-cluster)
 * [Step 3: Set up your Openshift namespace](#step-3-set-up-your-openshift-namespace)
-* [Step 4: Install Skupper in your Kubernetes namespace](#step-4-install-skupper-in-your-kubernetes-namespace)
-* [Step 5: Install the Skupper gateway](#step-5-install-the-skupper-gateway)
-* [Step 6: Deploy the frontend and backend services](#step-6-deploy-the-frontend-and-backend-services)
-* [Step 7: Expose the backend service](#step-7-expose-the-backend-service)
-* [Step 8: Expose the frontend service](#step-8-expose-the-frontend-service)
-* [Step 9: Test the application](#step-9-test-the-application)
+
+* [Step 4: Install RHSI in your Openshift namespace](Step-4:-nstall-RHSI-in-your-Openshift-namespace)
+* [Step 5: Install the Skupper gateway]
+* [Step 6: Build the backend image]
+* [Step 7: Deploy the backend on Openshift]
+* [Step 8: Switch the backend running locally with the one running on Openshift]
+
+
+(Step-5-Install the Skupper gateway)
+(Step-6-uild the backend image)
+(Step-7-Deploy the backend on Openshift)
+(Step-8-Switch the backend running locally with the one running on Openshift)
+
 * [Cleaning up](#cleaning-up)
 
 ## Overview
