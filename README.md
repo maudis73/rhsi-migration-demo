@@ -10,7 +10,7 @@
 * [Step 2: Access your Openshift cluster](#step-2-access-your-openshift-cluster)
 * [Step 3: Set up your Openshift namespace](#step-3-set-up-your-openshift-namespace)
 
-* [Step 4: Install RHSI in your Openshift namespace](Step-4:-nstall-RHSI-in-your-Openshift-namespace)
+* [Step 4: Install RHSI in your Openshift namespace](Step-4-nstall-RHSI-in-your-Openshift-namespace)
 * [Step 5: Install the Skupper gateway]
 * [Step 6: Build the backend image]
 * [Step 7: Deploy the backend on Openshift]
