@@ -241,7 +241,7 @@ On Openshift, you can see the logs from the backend pod logs.
 To remove Skupper and the other resources from this exercise, use
 the following commands.
 
-_**Console for hello-world:**_
+_**Console for rhsi-demo:**_
 
 ~~~ shell
 kill $(ps -ef | grep 'python main\.py' | awk '{print $2}') 2> /dev/null
@@ -249,4 +249,5 @@ skupper gateway delete
 skupper delete
 oc delete service/backend
 oc delete deployment/backend
+oc delete project rhsi-demo 
 ~~~
