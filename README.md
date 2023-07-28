@@ -35,7 +35,10 @@ machine.
 We are going to show how the backend can be moved to Openshift and use RHSI to enable the frontend to connect to the backend
 using a dedicated service network, without any frontend reconfiguration.
 
-<!-- <img src="images/entities.svg" width="640"/> -->
+
+<!--img width="1042" alt="petclinic-screenshot" src="https://cloud.githubusercontent.com/assets/838318/19727082/2aee6d6c-9b8e-11e6-81fe-e889a5ddfded.png"-->
+
+<img src="images/img1.png" width="640"/>
 
 ## Prerequisites
 
