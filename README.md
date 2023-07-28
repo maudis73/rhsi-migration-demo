@@ -207,8 +207,6 @@ $ oc new-app <backend_image_url> --name backend
 
 ## Step 8: Switch the backend running locally with the one running on Openshift
 
-_**Console for rhsi-demo:**_
-
 We are now going to switch the two backends, so that we can decommission the one running on the local system.
 To do that, we are first going to expose the backend on the VAN, and then create a forward rule on port 6000 on the local system (through the skupper
 gateway) to forwart all incomong requests to the backend VAN service.
@@ -217,6 +215,8 @@ Before running the following commands, stop the backend, by pressing CTRL+C on t
 The frontend has been developed sa that it will try to reconnect if the backend goes down, so when you stop the backend on the local system,
 you will see some error messages in the Tab2. Once we will perform the switch to the backend on Openshift, the client will automatically reconnect,
 but this time it will connect to the backend running on Openshift.
+
+_**Console for rhsi-demo:**_
 
 ~~~ shell
 skupper service create backend 6000
@@ -233,8 +233,8 @@ $ skupper gateway forward backend 6000
 2023/07/27 12:32:22 CREATE io.skupper.router.tcpListener backend:6000 map[address:backend:6000 name:backend:6000 port:6000 siteId:e06dd6a1-7d36-44bf-88bf-8c50fcdfbcd1]
 ~~~
 
-Observe the logs in Tab2, you should see that the client has managed to reconnect and continue from ther it stopped.
-On Openshift, you can see the logs from the backend pod logs.
+Observe the logs in Tab2, you should see that the client has managed to reconnect and continue from where it stopped.
+On Openshift, you can see the logs from the backend pod.
 
 ## Cleaning up
 
