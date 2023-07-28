@@ -233,7 +233,7 @@ $ skupper gateway forward backend 6000
 2023/07/27 12:32:22 CREATE io.skupper.router.tcpListener backend:6000 map[address:backend:6000 name:backend:6000 port:6000 siteId:e06dd6a1-7d36-44bf-88bf-8c50fcdfbcd1]
 ~~~
 
-Observe the logs in Tab2, you should see that the client has managed to reconnec and continue from ther it stopped.
+Observe the logs in Tab2, you should see that the client has managed to reconnect and continue from ther it stopped.
 On Openshift, you can see the logs from the backend pod logs.
 
 ## Cleaning up
