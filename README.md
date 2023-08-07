@@ -174,7 +174,7 @@ docker`) or as a systemd service (`--type service`).
 
 ## Step 6: Build the backend image
 
-Replace the <backend_image_url> with the url of the your image in your image regitry
+Replace the <backend_image_url> with the url of your image in your image regitry
 
 _**Console for rhsi-demo:**_
 
@@ -186,15 +186,17 @@ podman push <backend_image_url>
 _Sample output:_
 
 ~~~ console
-$ podman build backend/ -t <backend_image_url>
-Successfully tagged <backend_image_url>:latest
+$ podman build backend/ -t quay.io/mdiscepo/backend
+Successfully tagged quay.io/mdiscepo/backend:latest
 
-$ podman push <backend_image_url>
+$ podman push quay.io/mdiscepo/backend
 ...Writing manifest to image destination
 Storing signatures
 ~~~
 
 ## Step 7: Deploy the backend on Openshift
+
+Replace the <backend_image_url> with the url of your image in your image regitry
 
 _**Console for rhsi-demo:**_
 
@@ -205,7 +207,7 @@ oc new-app <backend_image_url> --name backend
 _Sample output:_
 
 ~~~ console
-$ oc new-app <backend_image_url> --name backend
+$ oc new-app quay.io/mdiscepo/backend --name backend
 --> ...Success...
     Run 'oc status' to view your app.
 ~~~
