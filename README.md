@@ -219,7 +219,7 @@ To do that, we are first going to expose the backend on the VAN, and then create
 gateway) to forwart all incomong requests to the backend VAN service.
 
 Before running the following commands, stop the backend, by pressing CTRL+C on the Tab1.
-The frontend has been developed sa that it will try to reconnect if the backend goes down, so when you stop the backend on the local system,
+The frontend has been developed so that it will try to reconnect if the backend goes down, so when you stop the backend on the local system,
 you will see some error messages in the Tab2. Once we will perform the switch to the backend on Openshift, the client will automatically reconnect,
 but this time it will connect to the backend running on Openshift.
 
