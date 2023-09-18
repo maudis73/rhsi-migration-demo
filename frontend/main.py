@@ -13,7 +13,8 @@ def greet_api(name):
         else:
             return f"Failed to get response. Status code: {response.status_code}"
     except requests.exceptions.RequestException as e:
-        return f"Failed to send request. {e}"
+        raise ConnectionError(f"Failed to send request. {e}")
+
 
 if __name__ == "__main__":
     i = 1
@@ -22,11 +23,12 @@ if __name__ == "__main__":
         try:
             greeting = greet_api(name)
             print(greeting)
-        except requests.exceptions.RequestException as e:
+        except ConnectionError as e:
             print(f"Connection error for '{name}'. Retrying...")
             time.sleep(1)  # Wait for 1 second before retrying
             continue
-        i += 1
+        else:
+            i +=  1
         time.sleep(1)  # Wait for 1 second before sending the next request
 
 
