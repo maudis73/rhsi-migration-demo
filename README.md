@@ -223,6 +223,8 @@ The frontend has been developed so that it will try to reconnect if the backend 
 you will see some error messages in the Tab2. Once we will perform the switch to the backend on Openshift, the client will automatically reconnect,
 but this time it will connect to the backend running on Openshift.
 
+Alternartively, the script replace.sh can be used to run all the steps in one go
+
 _**Console for rhsi-demo:**_
 
 ~~~ shell
